@@ -1,0 +1,76 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "nombre": "Corona Extra",
+        "tipo": "Cerveza",
+        "precio": 25000,
+        "stock": 100,
+        "imagen": "https://media.discordapp.net/attachments/498604686077722655/1153389913455210527/589-5897300_corona-transparent-710ml-botella-de-corona-hd-png-e1664561462699.png?width=649&height=671"
+      },
+      {
+        "id": 2,
+        "nombre": "Sol",
+        "tipo": "Cerveza",
+        "precio": 20000,
+        "stock": 50,
+        "imagen": "https://media.discordapp.net/attachments/498604686077722655/1153389787328290866/000000000000009130-UN-01.png?width=671&height=671"
+      },
+      {
+        "id": 3,
+        "nombre": "Heineken",
+        "tipo": "Cerveza",
+        "precio": 27000,
+        "stock": 75,
+        "imagen": "https://media.discordapp.net/attachments/498604686077722655/1153389736220688384/Pack-cerveza-lager-botella-6-un-330-cc-c-u.png?width=671&height=671"
+      },
+      {
+        "id": 4,
+        "nombre": "Tequila José Cuervo Especial",
+        "tipo": "Tequila",
+        "precio": 50000,
+        "stock": 100,
+        "imagen": "https://media.discordapp.net/attachments/498604686077722655/1153390012356903003/Tequila-especial-Jose-Cuervo-750-ml.png?width=671&height=671"
+      },
+      {
+        "id": 5,
+        "nombre": "Tequila Don Julio",
+        "tipo": "Tequila",
+        "precio": 75000,
+        "stock": 50,
+        "imagen": "https://media.discordapp.net/attachments/498604686077722655/1153390115561939074/tequiladonjulio.png"
+      },
+      {
+        "id": 6,
+        "nombre": "Vino tinto Cabernet Sauvignon",
+        "tipo": "Vino",
+        "precio": 30000,
+        "stock": 100,
+        "imagen": "https://media.discordapp.net/attachments/498604686077722655/1153390185862668318/reservado-cabernet-sauvignon-de-375-ml.png?width=671&height=671"
+      },
+      {
+        "id": 7,
+        "nombre": "Vino blanco Sauvignon Blanc",
+        "tipo": "Vino",
+        "precio": 25000,
+        "stock": 50,
+        "imagen": "https://media.discordapp.net/attachments/498604686077722655/1153390470156800050/reservado-sauvignon-blanc-de-750-ml.png?width=671&height=671"
+      },
+      {
+        "id": 8,
+        "nombre": "Whisky Johnnie Walker Black Label",
+        "tipo": "Licor",
+        "precio": 75000,
+        "stock": 75,
+        "imagen": "https://media.discordapp.net/attachments/498604686077722655/1153390903965270047/84c0d63c-c601-4e96-9541-6640565c53d2-md.png?width=671&height=671"
+      },
+      {
+        "id": 9,
+        "nombre": "Ron Bacardi Carta Blanca",
+        "tipo": "Licor",
+        "precio": 50000,
+        "stock": 100,
+        "imagen": "https://media.discordapp.net/attachments/498604686077722655/1153391031329509457/1000X1000BACACHIN_1800x1800.png?width=671&height=671"
+      }
+    ]
+  }
