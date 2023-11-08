@@ -43,22 +43,22 @@ const homePage = () => {
                     {editMode ? (
                         <div className="flex-wrap w-[90%] mx-auto">
                             <input
-                                className="bg-white dark:bg-gray-800 text-xl text-gray-900  dark:text-gray-400 m-4 w-[90%] flex items-center justify-center"
+                                className="bg-white dark:bg-gray-800 text-xl text-gray-900  dark:text-gray-400 m-4 w-[90%] flex items-center justify-center placeholder:px-2"
                                 type="text"
                                 placeholder="Nombre"
                             />
                             <input
-                                className="bg-white dark:bg-gray-800 text-xl text-gray-900  dark:text-gray-400 m-4 w-[90%] flex items-center justify-center"
+                                className="bg-white dark:bg-gray-800 text-xl text-gray-900  dark:text-gray-400 m-4 w-[90%] flex items-center justify-center  placeholder:px-2"
                                 type="text"
                                 placeholder="Email"
                             />
                             <input
-                                className="bg-white dark:bg-gray-800 text-xl text-gray-900  w-[90%] dark:text-gray-400 m-4 flex items-center justify-center"
+                                className="bg-white dark:bg-gray-800 text-xl text-gray-900  w-[90%] dark:text-gray-400 m-4 flex items-center justify-center  placeholder:px-2"
                                 type="text"
                                 placeholder="Rut"
                             />
                             <input
-                                className="bg-white dark:bg-gray-800 text-xl text-gray-900  w-[90%] dark:text-gray-400 m-4 flex items-center justify-center"
+                                className="bg-white dark:bg-gray-800 text-xl text-gray-900  w-[90%] dark:text-gray-400 m-4 flex items-center justify-center  placeholder:px-2"
                                 type="text"
                                 placeholder="Ciudad"
                             />
