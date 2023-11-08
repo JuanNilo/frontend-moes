@@ -24,7 +24,7 @@ const homePage = () => {
                 {/* Rectangulo datos del usuario */}
                 <div
                     style={{ background: primary }}
-                    className="h-[95%] w-[350px] rounded-md flex-col relative"
+                    className="h-[95%] w-[40%] min-w-[30vh] rounded-md flex-col relative"
                 >
                     {/* Botón de edición */}
 
@@ -41,35 +41,35 @@ const homePage = () => {
                     </div>
                     {/* Especificaciones del usuario */}
                     {editMode ? (
-                        <div>
+                        <div className="flex-wrap w-[90%] mx-auto">
                             <input
-                                className="bg-white dark:bg-gray-800 text-xl text-gray-900 uppercase dark:text-gray-400 m-4 flex items-center justify-center"
+                                className="bg-white dark:bg-gray-800 text-xl text-gray-900  dark:text-gray-400 m-4 w-[90%] flex items-center justify-center"
                                 type="text"
-                                value="Nombre"
+                                placeholder="Nombre"
                             />
                             <input
-                                className="bg-white dark:bg-gray-800 text-xl text-gray-900 uppercase dark:text-gray-400 m-4 flex items-center justify-center"
+                                className="bg-white dark:bg-gray-800 text-xl text-gray-900  dark:text-gray-400 m-4 w-[90%] flex items-center justify-center"
                                 type="text"
-                                value="Email"
+                                placeholder="Email"
                             />
                             <input
-                                className="bg-white dark:bg-gray-800 text-xl text-gray-900 uppercase dark:text-gray-400 m-4 flex items-center justify-center"
+                                className="bg-white dark:bg-gray-800 text-xl text-gray-900  w-[90%] dark:text-gray-400 m-4 flex items-center justify-center"
                                 type="text"
-                                value="Rut"
+                                placeholder="Rut"
                             />
                             <input
-                                className="bg-white dark:bg-gray-800 text-xl text-gray-900 uppercase dark:text-gray-400 m-4 flex items-center justify-center"
+                                className="bg-white dark:bg-gray-800 text-xl text-gray-900  w-[90%] dark:text-gray-400 m-4 flex items-center justify-center"
                                 type="text"
-                                value="Ciudad"
+                                placeholder="Ciudad"
                             />
-                            <button className='text-sm text-white transition duration-150 hover:bg-[#b6efb0] bg-[#93c47d]  font-bold py-2 px-6 rounded flex items-center justify-center'>Modificar Datos</button>
+                            <button className='text-sm w-[100%] text-white transition duration-150 hover:bg-[#b6efb0] bg-[#93c47d]  font-bold py-2 px-6 rounded '>Modificar Datos</button>
                         </div>
                     ) : (
                         <div>
-                            <a className="bg-white dark:bg-gray-800 text-xl text-gray-900 uppercase dark:text-gray-400 m-4 flex items-center justify-center">Camilonga</a>
-                            <a className=" bg-white dark:bg-gray-800 text-xl text-gray-900 uppercase dark:text-gray-400 m-4 flex items-center justify-center">Camilonga@longa.cl</a>
-                            <a className=" bg-white dark:bg-gray-800 text-xl text-gray-900 uppercase dark:text-gray-400 m-4 flex items-center justify-center">66.666.666-6</a>
-                            <a className=" bg-white dark:bg-gray-800 text-xl text-gray-900 uppercase dark:text-gray-400 m-4 flex items-center justify-center">VallenarCity</a>
+                            <a className="bg-white dark:bg-gray-800 text-xl text-gray-900  dark:text-gray-400 m-4 flex items-center justify-center">Camilonga</a>
+                            <a className=" bg-white dark:bg-gray-800 text-xl text-gray-900  dark:text-gray-400 m-4 flex items-center justify-center">Camilonga@longa.cl</a>
+                            <a className=" bg-white dark:bg-gray-800 text-xl text-gray-900  dark:text-gray-400 m-4 flex items-center justify-center">66.666.666-6</a>
+                            <a className=" bg-white dark:bg-gray-800 text-xl text-gray-900  dark:text-gray-400 m-4 flex items-center justify-center">VallenarCity</a>
                         </div>
                     )}
                 </div>
@@ -80,7 +80,7 @@ const homePage = () => {
                 className="h-[89%] w-[835px] rounded-md overflow-auto cols-span-2 mt-6"
             >
                 <table className="w-full text-xl text-left text-gray-500 dark:text-gray-400">
-                    <thead className="text-xl text-gray-900 uppercase dark:text-gray-400">
+                    <thead className="text-xl text-gray-900  dark:text-gray-400">
                         <tr>
                             <th scope="col" className="px-6 py-3">
                                 ID Compra
