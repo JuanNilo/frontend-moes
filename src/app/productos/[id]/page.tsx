@@ -30,23 +30,59 @@ const Products: React.FC<ProductProps> = ({ params }) => {
     }
 
     return (
+        // Contenedor del producto
         <div
             style={{ backgroundColor: brand }}
-            className="text-center flex w-[80%] h-[65vh] mx-auto my-10 p-5 rounded-xl shadow-xl"
+            className="text-center flex w-[80%] h-[45vh] mx-auto my-10 p-5 rounded-xl shadow-xl"
         >
+            {/* Imagen del producto */}
             <div className="rounded-xl overflow-hidden flex justify-center items-center bg-white h-[100%]">
                 <img className="h-[90%]" src={product.imagen} alt={product.nombre} />
             </div>
             {/* Contenido del producto */}
-            <div className="text-center mx-auto">
-                <h2 className="text-5xl mb-6 font-bold" style={{ color: "white" }}>
-                    {product.nombre}
-                </h2>
-                <h3 className="text-2xl py-3 font-bold" style={{ color: tertiary }}>
-                    Categoria: {product.tipo}
-                </h3>
-                <h4>Precio: {product.precio}</h4>
-                <h5>Stock: {product.stock}</h5>
+            <div className="text-center w-[80%] h-[90%] p-6 pr-2 space-y-5">
+                {/* Titulo */}
+                <div className=" h-[60%] p-4">
+                    <h2 className="text-5xl mb-6 font-bold" style={{ color: "white" }}>
+                        {product.nombre}
+                    </h2>
+                </div>
+                {/* Categoria */}
+                <div className="  h-[10%] w-[70%] mx-auto text-start">
+                    <h3 className="text-2xl  font-bold" style={{ color: tertiary }}>
+                        Categoria: {product.tipo}
+                    </h3>
+                </div>
+                {/* Precio y Stock */}
+                <div className="  w-[100%] items-center flex h-[10%] ">
+                    <div className="w-[50%]  text-xl text-white">
+                    <h5 >Stock: {product.stock}</h5>
+
+                    </div>
+                    <div className="w-[50%]">
+
+                    <h4 className="text-3xl font-bold text-white">Precio: ${product.precio}</h4>
+                    </div>
+                </div>
+                {/* Botones */}
+                <div className="  h-[20%] flex">
+                    <div className="w-[50%]">
+                    <div className="flex flex-row h-10 w-[30%] mx-auto rounded-lg relative bg-transparent mt-1">
+                        <button data-action="decrement" className=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
+                            <span className="m-auto text-2xl font-thin">−</span>
+                        </button>
+                        <input type="number" className="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700 " name="custom-input-number" value="0"></input>
+                        <button data-action="increment" className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer">
+                            <span className="m-auto text-2xl font-thin">+</span>
+                        </button>
+                    </div>
+                    </div>
+                    <div className="w-[50%]">
+                    <button type="submit" className=" flex w-full items-center justify-center rounded-md border border-transparent bg-orange-200 px-8 py-3 text-base font-medium text-black hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2">Comprar</button>
+        
+
+                    </div>
+                </div>
             </div>
         </div>
     );
