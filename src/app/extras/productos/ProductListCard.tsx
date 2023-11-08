@@ -1,6 +1,7 @@
 import { AiTwotoneDelete } from "react-icons/ai";
 
 import { Colors } from "../styles";
+import Link from "next/link";
 
 const { primary, secondary, tertiary } = Colors;
 
@@ -15,18 +16,21 @@ interface Product {
 export default function ProductListCard(product: Product) {
 
     return (
-        <div className=" mx-auto m-2 w-[70%] h-[100px]  "
+        <div className=" mx-auto m-2 w-[100%] h-[15vh] flex px-4 py-2 rounded-lg justify-between"
             style={{ backgroundColor: primary, color: secondary }}
         >
+            <Link href={`/productos/${product.id}`} className="h-[100%] rounded-md overflow-hidden">
+
+            <img src={product.imagen} alt="" className="h-[100%] bg-white" />
+            </Link>
             <h1>
                 {product.nombre}
             </h1>
-            <img src={product.imagen} alt="" className="h-[100%] bg-white" />
             <p>
                 {product.precio}
             </p>
-            <button className="bg-purple-500 p-2 rounded-full">
-                <AiTwotoneDelete size={40} className=" text-black m-auto" />
+            <button className="bg-red-500 hover:bg-red-900  text-black hover:text-white  px-3 h-[45%] my-auto rounded-full">
+                <AiTwotoneDelete size={30} className="m-auto" />
 
             </button>
         </div>

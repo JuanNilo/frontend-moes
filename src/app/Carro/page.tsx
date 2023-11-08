@@ -1,5 +1,5 @@
 import React from 'react';
-import { Colors } from '../extras/styles';
+import { Colors, primaryColor } from '../extras/styles';
 import { products } from "@/app/components/data/productos.json";
 import ProductListCard from '../extras/productos/ProductListCard';
 const {tertiary} = Colors;
@@ -8,26 +8,53 @@ export default function Carro() {
 
     const productos = products;
     return (
-        <div className='flex justify-center items-center h-[100%] p-10'>
-
-        <div className=" h-[80vh] w-[80%] text-center p-10 rounded-md shadow-xl overflow-y-scroll"
-            style={{backgroundColor: tertiary}}
+        <div className='flex justify-center  h-[100%] p-10 space-x-10'>
+        {/* Contenido del carro */}
+        <div className=" min-h-[80vh] w-[60%] text-center p-4 rounded-lg  "
+            
             >
             <h1
-                className='text-4xl font-bold'
+                className='text-5xl my-6 mb-8 font-bold text-white'
             >Carro de compras</h1>
             {productos ? (
                 // Renderizar los productos
                 <ul>
                     {productos.map((producto) => (
-                        // <li key={producto.id}>{producto.nombre}</li>
-                        <ProductListCard key={producto.id} nombre={producto.nombre} imagen={producto.imagen} precio={producto.precio}/>
+                        <ProductListCard key={producto.id} id={producto.id} nombre={producto.nombre} imagen={producto.imagen} precio={producto.precio} stock={producto.stock} tipo={producto.tipo}/>
                     ))}
                 </ul>
             ) : (
                 // Mostrar mensaje de que no hay productos
                 <p>No hay productos disponibles</p>
             )}
+        </div>
+        {/* Resumen de la compra */}
+        <div className=" h-[80vh] w-[30%] text-center p-8 rounded-xl shadow-xl abosolute top-0 right-0"
+            style={{backgroundColor: tertiary}}
+            >
+            
+            <div style={{backgroundColor: Colors.primary}} className=" bg-blue text-white h-[100%] rounded-lg shadow-md p-6">
+            <h1
+                className='text-4xl pb-6 font-bold'
+            >Resumen de la compra</h1>
+                    <div className="flex justify-between mb-2">
+                        <span>Subtotal</span>
+                        <span>$19.99</span>
+                    </div>
+                    <div className="flex justify-between mb-2">
+                        <span>Taxes</span>
+                        <span>$1.99</span>
+                    </div>
+                    <div className="flex justify-between mb-2">
+                        <span>Shipping</span>
+                        <span>$0.00</span>
+                    </div>
+                    <div className="flex justify-between mb-2">
+                        <span className="font-semibold">Total</span>
+                        <span className="font-semibold">$21.98</span>
+                    </div>
+                    <button style={{ backgroundColor: Colors.tertiary}} className=" text-black font-bold py-2 px-4 rounded-lg mt-4 w-full">Checkout</button>
+                </div>
         </div>
         </div>
     );

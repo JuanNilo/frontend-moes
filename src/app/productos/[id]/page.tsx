@@ -36,7 +36,7 @@ const Products: React.FC<ProductProps> = ({ params }) => {
             className="text-center flex w-[80%] h-[45vh] mx-auto my-10 p-5 rounded-xl shadow-xl"
         >
             {/* Imagen del producto */}
-            <div className="rounded-xl overflow-hidden flex justify-center items-center bg-white h-[100%]">
+            <div className="rounded-xl overflow-hidden flex justify-center items-center bg-white h-[100%] shadow-md shadow-slate-800">
                 <img className="h-[90%]" src={product.imagen} alt={product.nombre} />
             </div>
             {/* Contenido del producto */}
