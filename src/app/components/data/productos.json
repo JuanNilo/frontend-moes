@@ -63,14 +63,6 @@
         "precio": 75000,
         "stock": 75,
         "imagen": "https://media.discordapp.net/attachments/498604686077722655/1153390903965270047/84c0d63c-c601-4e96-9541-6640565c53d2-md.png?width=671&height=671"
-      },
-      {
-        "id": 9,
-        "nombre": "Ron Bacardi Carta Blanca",
-        "tipo": "Licor",
-        "precio": 50000,
-        "stock": 100,
-        "imagen": "https://media.discordapp.net/attachments/498604686077722655/1153391031329509457/1000X1000BACACHIN_1800x1800.png?width=671&height=671"
       }
     ]
   }
