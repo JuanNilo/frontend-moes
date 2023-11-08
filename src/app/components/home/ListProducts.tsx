@@ -13,7 +13,7 @@ export default async function ListProducts() {
         <div className="w-[100%] h-[100%] text-center">
             <ul className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-4">
               {productos.map((product )=> (
-                <Link href={`productos/${product.id}`} key={product.id} style={{backgroundColor: brand}} className=" text-center rounded-xl">
+                <Link href={`/home/productos/${product.id}`} key={product.id} style={{backgroundColor: brand}} className=" text-center rounded-xl">
                   <div className="h-[20%] px-2">
                       <h2 className=" text-lg md:text-xl 2xl:text-2xl py-3 font-bold"
                         style={{color: tertiary}}>

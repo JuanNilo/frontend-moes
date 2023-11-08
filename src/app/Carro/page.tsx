@@ -53,7 +53,7 @@ export default function Carro() {
                         <span className="font-semibold">Total</span>
                         <span className="font-semibold">$21.98</span>
                     </div>
-                    <button style={{ backgroundColor: Colors.tertiary}} className=" text-black font-bold py-2 px-4 rounded-lg mt-4 w-full">Checkout</button>
+                    <button style={{ backgroundColor: Colors.tertiary}} className=" text-black hover:opacity-60 font-bold py-2 px-4 rounded-lg mt-4 w-full">Checkout</button>
                 </div>
         </div>
         </div>
