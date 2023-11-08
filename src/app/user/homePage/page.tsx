@@ -12,7 +12,7 @@ const homePage = () => {
         console.log('hola')
     }
 
-   
+
     return (
 
         /* Rectangulo principal del usuario */
@@ -28,7 +28,7 @@ const homePage = () => {
                 >
                     {/* Botón de edición */}
 
-                    <button className="absolute top-0 right-0 m-1 p-2"  onClick={() => setEditMode(!editMode)}>
+                    <button className="absolute top-0 right-0 m-1 p-2" onClick={() => setEditMode(!editMode)}>
                         <BiEdit className="text-[2rem] fill-white" />
                     </button>
                     {/* Contenedor de la imagen */}

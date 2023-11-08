@@ -2,23 +2,31 @@ import { AiTwotoneDelete } from "react-icons/ai";
 
 import { Colors } from "../styles";
 
-const {primary, secondary, tertiary} = Colors;
+const { primary, secondary, tertiary } = Colors;
 
-export default function ProductListCard (props) {
+interface Product {
+    id: number;
+    nombre: string;
+    imagen: string;
+    tipo: string;
+    precio: number;
+    stock: number;
+}
+export default function ProductListCard(product: Product) {
 
-    return(
+    return (
         <div className=" mx-auto m-2 w-[70%] h-[100px]  "
-            style={{backgroundColor: primary, color: secondary}}
+            style={{ backgroundColor: primary, color: secondary }}
         >
             <h1>
-                {props.nombre}
+                {product.nombre}
             </h1>
-                <img src={props.imagen} alt=""  className="h-[100%] bg-white"/>
+            <img src={product.imagen} alt="" className="h-[100%] bg-white" />
             <p>
-                {props.precio}
+                {product.precio}
             </p>
             <button className="bg-purple-500 p-2 rounded-full">
-                <AiTwotoneDelete size={40} className=" text-black m-auto"/>
+                <AiTwotoneDelete size={40} className=" text-black m-auto" />
 
             </button>
         </div>
