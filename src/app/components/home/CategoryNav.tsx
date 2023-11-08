@@ -14,7 +14,7 @@ export default function CategoryNav(){
         {/* Contenido */}
         <ul className="flex w-[80%] h-[100%] justify-center gap-6 mx-auto">
             {dataCategorias.map((categoria )=> (
-                <Link href={`/categorias/${categoria.nombre}`} key={categoria.nombre} className="w-[100px] flex items-center justify-center rounded-md" style={{backgroundColor: tertiary}} >
+                <Link href={`/Categorias/${categoria.nombre}`} key={categoria.nombre} className="w-[100px] flex items-center justify-center rounded-md" style={{backgroundColor: tertiary}} >
                     <img className="h-[80%] m-auto" src={categoria.imagen} alt={categoria.nombre}/>
                 </Link>
                 

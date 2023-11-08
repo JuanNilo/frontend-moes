@@ -15,7 +15,7 @@ const Carrito = () => {
   return (
     <div>
       <Link
-        href={'/carro'} 
+        href={'/Carro'} 
         className="h-[50px] w-[50px] rounded-full flex cursor-pointer mx-2"
         style={{ backgroundColor: tertiary }}
       >
