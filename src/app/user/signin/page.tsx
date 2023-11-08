@@ -100,7 +100,7 @@ function SignIn() {
           {/* Botones */}
           <button
             type="submit"
-            className={`${styleButtomPrimary} flex items-center justify-center my-2 mx-auto w-11/12`}
+            className={`${styleButtomPrimary} flex items-center justify-center my-2 mx-auto w-10/12`}
           >
             <Link href={'/user/login'}>Registrarse</Link>
 
@@ -108,7 +108,7 @@ function SignIn() {
 
           <button
             type="submit"
-            className={`${styleButtomSecondary} flex items-center justify-center my-2 mx-auto w-11/12`}
+            className={`${styleButtomSecondary} flex items-center justify-center my-2 mx-auto w-10/12`}
           >
             <Link href={'/'}>Volver</Link>
 
