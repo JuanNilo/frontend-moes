@@ -12,20 +12,7 @@ export default function Categoria({params}){
                 {id}
             </h1>
             <ul className="w-[80%] mt-8 mx-auto">
-                {/* {productos.map((product )=> (
-                    <li key={product.id}>
-                        <h2 className=" text-lg md:text-xl 2xl:text-2xl py-3 font-bold"
-                            style={{color: tertiary}}>
-                            {product.nombre}
-                        </h2>
-                        <img src={product.imagen} alt="" className="h-[80%]"/>
-                        <p style={{color:"white"}} className="text-xl">
-                            Precio: {product.precio}
-                        </p>
-                    </li>
-                ))} */}
-            <ListProducts/>     
-
+                <ListProducts/>     
             </ul>
         </div>
     )
