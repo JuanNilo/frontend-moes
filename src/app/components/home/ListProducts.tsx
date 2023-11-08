@@ -11,7 +11,6 @@ export default async function ListProducts() {
 
     return (
         <div className="w-[100%] h-[100%] text-center">
-            <h2 className=" text-3xl mb-6" style={{color: tertiary}}>Mas vendidos</h2>
             <ul className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-4">
               {productos.map((product )=> (
                 <Link href={`productos/${product.id}`} key={product.id} style={{backgroundColor: brand}} className=" text-center rounded-xl">

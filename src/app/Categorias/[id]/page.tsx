@@ -1,5 +1,6 @@
 import { Colors } from "@/app/extras/styles";
 import { products } from "@/app/components/data/productos.json"
+import ListProducts from "@/app/components/home/ListProducts";
 const {tertiary} = Colors;
 
 export default function Categoria({params}){
@@ -10,8 +11,8 @@ export default function Categoria({params}){
             <h1 style={{color:tertiary}} className="text-5xl">
                 {id}
             </h1>
-            <ul>
-                {productos.map((product )=> (
+            <ul className="w-[80%] mt-8 mx-auto">
+                {/* {productos.map((product )=> (
                     <li key={product.id}>
                         <h2 className=" text-lg md:text-xl 2xl:text-2xl py-3 font-bold"
                             style={{color: tertiary}}>
@@ -22,7 +23,9 @@ export default function Categoria({params}){
                             Precio: {product.precio}
                         </p>
                     </li>
-                ))}
+                ))} */}
+            <ListProducts/>     
+
             </ul>
         </div>
     )

@@ -1,7 +1,7 @@
 import ListProducts from "../home/ListProducts";
 import Slider from "../home/Slider";
 import CategoryNav from "../home/CategoryNav";
-
+import { Colors } from "@/app/extras/styles";
 
 export default function HomePage(){
 
@@ -13,6 +13,7 @@ export default function HomePage(){
             <div className=" h-[40vh]">
                 <Slider/>
             </div>
+            <h2 className=" text-3xl mb-6 text-center" style={{color: Colors.tertiary}}>Mas vendidos</h2>
             <ListProducts/>     
 
         </div>
