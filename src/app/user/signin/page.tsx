@@ -19,15 +19,15 @@ function SignIn() {
 
   return (
     /* Contenedor principal */
-    <div className="fixed inset-x-0 top-[25%] left-0">
+    <div className="">
       <div
         style={{ backgroundColor: tertiary }}
-        className="box-content h-[500px] w-8/12 mx-auto my-10 grid grid-cols-5 rounded-md "
+        className="box-content h-[500px] w-8/12 mx-auto my-10 grid grid-cols-3 rounded-md "
       >
         {/* Contenedor Imagen */}
         <div
-          className="col-span-3 bg-teal-400 rounded-l overflow-hidden flex items-center justify-center"
-          style={{ backgroundImage: "url(https://media.discordapp.net/attachments/498604686077722655/1171420068563910656/White_Brown_Black_World_Whiskey_Day_Social_Media_Graphic.png?ex=655c9cf4&is=654a27f4&hm=fc6be1798dc22a0309d0727e55c0a57bdedaac25fd9e563df98981ab370aaa94&=&width=468&height=468)", backgroundSize: "cover", backgroundPosition: "center" }}
+          className="col-span-1 bg-teal-400 rounded-l overflow-hidden flex items-center justify-center"
+          style={{ backgroundImage: "url(https://media.discordapp.net/attachments/498604686077722655/1171420068563910656/White_Brown_Black_World_Whiskey_Day_Social_Media_Graphic.png?ex=655c9cf4&is=654a27f4&hm=fc6be1798dc22a0309d0727e55c0a57bdedaac25fd9e563df98981ab370aaa94&=&width=468&height=468)" }}
         >
         </div>
         {/* Contenedor registros */}

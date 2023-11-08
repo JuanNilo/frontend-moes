@@ -10,10 +10,10 @@ const { primary, secondary, tertiary } = Colors;
 export default function Login() {
     return (
         /* Contenedor principal */
-        <div className="fixed inset-x-0 top-[25%] left-0">
+        <div className="my-16">
             <div
                 style={{ backgroundColor: tertiary }}
-                className="box-content h-[50vh] w-9/12 mx-auto grid grid-cols-3 rounded-md"
+                className="box-content h-[400px] w-9/12 mx-auto grid grid-cols-3 rounded-md"
             >
                 {/*Contenedor de datos a ingresar*/}
                 <div
@@ -23,29 +23,27 @@ export default function Login() {
                     <h1 style={{ color: tertiary }} className="text-4xl m-4 flex items-center justify-center my-6">Inicio de Sesión</h1>
                     <h2 style={{ color: tertiary }} className="text-xl mx-5 mb-1">Correo Electronico</h2>
                     <input
-                        className="bg-white dark:bg-gray-800 text-xl text-gray-900 dark:text-gray-400 w-9/12 rounded-md mb-5 mx-5"
+                        className="bg-white dark:bg-gray-800 text-xl text-gray-900 dark:text-gray-400 m-2 w-9/12 rounded-md"
                         type="email"
-                        value=""
                         name="email"
                         required
                     />
                     <h2 style={{ color: tertiary }} className="text-xl mx-5 mb-1">Contraseña</h2>
                     <input
-                        className="bg-white dark:bg-gray-800 text-xl text-gray-900 dark:text-gray-400 m-4 w-9/12 rounded-md"
+                        className="bg-white dark:bg-gray-800 text-xl text-gray-900 dark:text-gray-400 m-2 w-9/12 rounded-md"
                         type="password"
-                        value=""
                         name="password"
                         required
                     />
                     <button
                         type="submit"
-                        className={`${styleButtomPrimary} flex items-center justify-center my-3 mx-auto w-9/12`}
+                        className={`${styleButtomPrimary} flex items-center justify-center my-2 mx-auto w-9/12`}
                     >
-                        Iniciar Sesion
+                        <Link href={'/user/homePage'}>Iniciar Sesión</Link>
                     </button>
 
                     <button
-                        className={`${styleButtomSecondary} flex items-center justify-center my-3 mx-auto w-9/12`}
+                        className={`${styleButtomSecondary} flex items-center justify-center my-2 mx-auto w-9/12`}
                     >
                         <Link href={'/user/signin'}>Registrarse</Link>
 
