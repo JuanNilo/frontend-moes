@@ -26,12 +26,12 @@ export default function SearchBar() {
   };
 
   return (
-      <section style={{ backgroundColor: tertiary }} className="rounded-full w-[35%] ml-4 md:ml-10 flex items-center">
+      <section style={{ backgroundColor: tertiary }} className="rounded-full w-[30%] md:w-[35%] ml-4 md:ml-10 flex items-center">
         <input
           type="text"
           name=""
           id=""
-          placeholder="Buscar productos..."
+          placeholder="Buscardor"
           style={{ backgroundColor: tertiary }}
           className="p-2 border-none rounded-full w-[90%] placeholder-gray-950 text-black font-bold"
           value={searchInput}

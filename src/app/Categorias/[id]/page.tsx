@@ -11,7 +11,7 @@ export default function Categoria({params}){
             <h1 style={{color:tertiary}} className="text-5xl">
                 {id}
             </h1>
-            <ul className="w-[80%] mt-8 mx-auto">
+            <ul className="w-[90%] md:w-[80%] mt-8 mx-auto">
                 <ListProducts/>     
             </ul>
         </div>

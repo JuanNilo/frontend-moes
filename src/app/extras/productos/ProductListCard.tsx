@@ -19,9 +19,9 @@ export default function ProductListCard(product: Product) {
         <div className=" mx-auto m-2 w-[100%] h-[15vh] flex px-4 py-2 rounded-lg justify-between"
             style={{ backgroundColor: primary, color: secondary }}
         >
-            <Link href={`/productos/${product.id}`} className="h-[100%] rounded-md overflow-hidden">
+            <Link href={`/productos/${product.id}`} className="h-[100%] min-w-[40%] rounded-md overflow-hidden">
 
-            <img src={product.imagen} alt="" className="h-[100%] bg-white" />
+            <img src={product.imagen} alt="" className=" h-[100%] bg-white" />
             </Link>
             <h1>
                 {product.nombre}

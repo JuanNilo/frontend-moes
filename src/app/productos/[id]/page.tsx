@@ -36,14 +36,14 @@ const Products: React.FC<ProductProps> = ({ params }) => {
             className="text-center block md:flex w-[100%] md:w-[80%] h-[60vh] md:h-[45vh] mx-auto my-2  md:my-10 bg-white p-2 md:p-5 rounded-xl shadow-xl overflow-hidden"
         >
             {/* Imagen del producto */}
-            <h2 className="text-5xl mb-6 font-bold md:hidden" style={{ color: "white" }}>
+            <h2 className="text-3xl md:text-5xl mb-6 font-bold md:hidden" style={{ color: "white" }}>
                 {product.nombre}
             </h2>
-            <div className="rounded-xl overflow-hidden flex justify-center items-center w-[70%] mx-auto bg-white h-[50%] md:h-[100%] shadow-md shadow-slate-800">
+            <div className="rounded-xl overflow-hidden flex justify-center items-center w-[70%] mx-auto bg-white h-[45%] md:h-[100%] shadow-md shadow-slate-800">
                 <img className="h-[90%]" src={product.imagen} alt={product.nombre} />
             </div>
             {/* Contenido del producto */}
-            <div className="text-center mx-auto w-[80%] h-[90%] p-2 md:p-6 pr-2 space-y-5">
+            <div className="text-center mx-auto w-[80%] h-[90%] md:p-6 pr-2 space-y-5">
                 {/* Titulo */}
                 <div className=" h-[60%] p-4 hidden md:block">
                     <h2 className="text-5xl mb-6 font-bold" style={{ color: "white" }}>

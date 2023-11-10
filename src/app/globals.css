@@ -22,7 +22,7 @@ h1{
 
 ::-webkit-scrollbar {
   width: 10px;
-  height: 10px;
+  height: 12px;
 }
 
 ::-webkit-scrollbar-track {
@@ -30,10 +30,31 @@ h1{
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: rgb(135, 135, 135);
   border-radius: 25px;
 } 
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none; /* quita el borde cuando se presiona */
+}
+
+select:focus {
+  outline: none; /* quita el borde cuando se presiona */
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=text]:focus {
+  outline: none;
 }

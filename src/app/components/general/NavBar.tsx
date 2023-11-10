@@ -22,14 +22,14 @@ export default function NavBar() {
             <SearchBar /> 
         </div>
         {/* Parte izquierda */}
-        <div className="w-[10%] md:w-[50%] flex justify-end">
+        <div className="w-[15%] md:w-[50%] flex-wrap md:flex items-center md:justify-end ">
           <Carrito/>
           <Link 
             href={'/user/login'} 
             > 
             <div
                 style={{backgroundColor: tertiary}}
-                className="h-[50px] w-[50px] rounded-full flex cursor-pointer mx-2"
+                className="h-[50px] w-[50px] rounded-full mt-2 flex cursor-pointer mx-2"
             >
                 <AiOutlineUser size={40} className=" text-black m-auto"/>
             </div>
