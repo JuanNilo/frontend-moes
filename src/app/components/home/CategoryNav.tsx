@@ -10,7 +10,7 @@ export default function CategoryNav(){
     return(
         <div 
             style={{backgroundColor: primary}}
-            className="h-[100%]  w-[100%] mx-auto my-6 rounded-md pt-2 ">
+            className=" h-[100%] overflow-auto scrollbar-x-hidden w-[100%] mx-auto my-6 rounded-md pt-2 ">
         {/* Contenido */}
         <ul className="flex w-[80%] h-[100%] py-2 justify-center gap-6 mx-auto">
             {dataCategorias.map((categoria )=> (

@@ -26,7 +26,7 @@ export default function SearchBar() {
   };
 
   return (
-      <section style={{ backgroundColor: tertiary }} className="rounded-full w-[35%] ml-10 flex items-center">
+      <section style={{ backgroundColor: tertiary }} className="rounded-full w-[35%] ml-4 md:ml-10 flex items-center">
         <input
           type="text"
           name=""

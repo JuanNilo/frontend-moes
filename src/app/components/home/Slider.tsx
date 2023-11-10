@@ -29,7 +29,7 @@ import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-ico
     return (
         <div className="h-[90%] w-[100%] flex mx-auto rounded-lg overflow-hidden">
             {/* slider de 4 imagenes */}
-            <div className="relative w-full h-full">
+            <div className="relative w-full h-[full]">
                 {images.map((image, index) => (
                     <img
                         key={index}

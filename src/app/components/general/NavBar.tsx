@@ -13,16 +13,16 @@ export default function NavBar() {
     return(
         <nav 
             style={{backgroundColor:primary,color:tertiary}}
-            className="w-[100%] h-[15vh] 2xl:h-[10vh] flex items-center px-4"
+            className="w-[100%] h-[15vh] 2xl:h-[10vh] flex items-center px-2 md:px-4"
         >
         {/* Lado derecho */}
-        <div className="w-[50%] flex">
+        <div className="w-[100%] md:w-[70%] flex">
             <Logo/>
             <SelectoSucursal/>
             <SearchBar /> 
         </div>
         {/* Parte izquierda */}
-        <div className="w-[50%] flex justify-end">
+        <div className="w-[10%] md:w-[50%] flex justify-end">
           <Carrito/>
           <Link 
             href={'/user/login'} 
