@@ -33,22 +33,25 @@ const Products: React.FC<ProductProps> = ({ params }) => {
         // Contenedor del producto
         <div
             style={{ backgroundColor: brand }}
-            className="text-center flex w-[80%] h-[45vh] mx-auto my-10 p-5 rounded-xl shadow-xl"
+            className="text-center block md:flex w-[100%] md:w-[80%] h-[60vh] md:h-[45vh] mx-auto my-2  md:my-10 bg-white p-2 md:p-5 rounded-xl shadow-xl overflow-hidden"
         >
             {/* Imagen del producto */}
-            <div className="rounded-xl overflow-hidden flex justify-center items-center bg-white h-[100%] shadow-md shadow-slate-800">
+            <h2 className="text-5xl mb-6 font-bold md:hidden" style={{ color: "white" }}>
+                {product.nombre}
+            </h2>
+            <div className="rounded-xl overflow-hidden flex justify-center items-center w-[70%] mx-auto bg-white h-[50%] md:h-[100%] shadow-md shadow-slate-800">
                 <img className="h-[90%]" src={product.imagen} alt={product.nombre} />
             </div>
             {/* Contenido del producto */}
-            <div className="text-center w-[80%] h-[90%] p-6 pr-2 space-y-5">
+            <div className="text-center mx-auto w-[80%] h-[90%] p-2 md:p-6 pr-2 space-y-5">
                 {/* Titulo */}
-                <div className=" h-[60%] p-4">
+                <div className=" h-[60%] p-4 hidden md:block">
                     <h2 className="text-5xl mb-6 font-bold" style={{ color: "white" }}>
                         {product.nombre}
                     </h2>
                 </div>
                 {/* Categoria */}
-                <div className="  h-[10%] w-[70%] mx-auto text-start">
+                <div className="  h-[5%] flex items-center justify-center w-[70%] mx-auto text-start">
                     <h3 className="text-2xl  font-bold" style={{ color: tertiary }}>
                         Categoria: {product.tipo}
                     </h3>
@@ -61,13 +64,13 @@ const Products: React.FC<ProductProps> = ({ params }) => {
                     </div>
                     <div className="w-[50%]">
 
-                    <h4 className="text-3xl font-bold text-white">Precio: ${product.precio}</h4>
+                    <h4 className="text-2xl md:text-3xl font-bold text-white">Precio: ${product.precio}</h4>
                     </div>
                 </div>
                 {/* Botones */}
                 <div className="  h-[20%] flex">
                     <div className="w-[50%]">
-                    <div className="flex flex-row h-10 w-[30%] mx-auto rounded-lg relative bg-transparent mt-1">
+                    <div className="flex flex-row h-10 w-[50%] md:w-[30%] mx-auto rounded-lg relative bg-transparent mt-1">
                         <button data-action="decrement" className=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
                             <span className="m-auto text-2xl font-thin">−</span>
                         </button>
