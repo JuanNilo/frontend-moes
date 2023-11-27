@@ -1,12 +1,18 @@
+'use client'
 import React from 'react';
 import { Colors, primaryColor } from '../extras/styles';
 import { products } from "@/app/components/data/productos.json";
 import ProductListCard from '../extras/productos/ProductListCard';
+import { AiTwotoneDelete } from "react-icons/ai";
 const {tertiary} = Colors;
 
 export default function Carro() {
 
     const productos = products;
+
+    const deleteProductHandler = (id) => {
+        console.log("delete product", id);
+    }
     return (
         <div className='text-center'>
             <h1
@@ -21,7 +27,28 @@ export default function Carro() {
                     // Renderizar los productos
                     <ul>
                         {productos.map((producto) => (
+                            <li key={producto.id} className='flex p-2 pl-4 rounded-xl gap-x-2 mb-4' style={{backgroundColor: Colors.primary}}>
+
                             <ProductListCard key={producto.id} id={producto.id} nombre={producto.nombre} imagen={producto.imagen} precio={producto.precio} stock={producto.stock} tipo={producto.tipo}/>
+                            {/* Botones */}
+                            
+
+                            <div className="flex flex-row h-10 w-24 mx-auto rounded-lg relative bg-transparent mt-1">
+                                <button data-action="decrement" className=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
+                                    <span className="m-auto text-2xl font-thin">−</span>
+                                </button>
+                                <input type="number" className="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700 " name="custom-input-number" value="0"></input>
+                                <button data-action="increment" className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer">
+                                    <span className="m-auto text-2xl font-thin">+</span>
+                                </button>
+                            </div>
+                            <button className="bg-red-500 hover:bg-red-900  text-black hover:text-white p-3 h-[45%] my-auto rounded-full"
+                                onClick={() => deleteProductHandler(producto.id)}
+                            >
+                                <AiTwotoneDelete size={30} className="m-auto" />
+                            </button>
+                            </li>
+                            
                         ))}
                     </ul>
                 ) : (

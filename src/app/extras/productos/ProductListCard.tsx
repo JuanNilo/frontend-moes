@@ -16,23 +16,22 @@ interface Product {
 export default function ProductListCard(product: Product) {
 
     return (
-        <div className=" mx-auto m-2 w-[100%] h-[15vh] flex px-4 py-2 rounded-lg justify-between"
+        <div className=" mx-auto m-2 w-[70%] h-[15vh] flex px-4 py-2 rounded-lg justify-between"
             style={{ backgroundColor: primary, color: secondary }}
         >
             <Link href={`/productos/${product.id}`} className="h-[100%] min-w-[40%] rounded-md overflow-hidden">
 
-            <img src={product.imagen} alt="" className=" h-[100%] bg-white" />
+            <img src={product.imagen} alt="" className=" h-[100%] rounded-md bg-white" />
             </Link>
-            <h1>
-                {product.nombre}
-            </h1>
-            <p>
-                {product.precio}
-            </p>
-            <button className="bg-red-500 hover:bg-red-900  text-black hover:text-white  px-3 h-[45%] my-auto rounded-full">
-                <AiTwotoneDelete size={30} className="m-auto" />
-
-            </button>
+            <div className="block text-center w-[50%]">
+                <h2 className="text-2xl font-bold mb-4">
+                    {product.nombre}
+                </h2>
+                <p className="font-bold">
+                    {product.precio}
+                </p>
+            </div>
+            
         </div>
     )
 }

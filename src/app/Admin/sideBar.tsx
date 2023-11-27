@@ -19,6 +19,10 @@ export default function SideBar() {
                         <OpcionContenida titulo={'Editar'} link={'/Admin/Categorias/Editar'}/>
                         <OpcionContenida titulo={'Agregar'} link={'/Admin/Categorias/Agregar'}/>
                     </OpcionContenedora>
+                    <OpcionContenedora titulo={'Sucursales'}>
+                        <OpcionContenida titulo={'Editar'} link={'/Admin/Sucursales/Editar'}/>
+                        <OpcionContenida titulo={'Agregar'} link={'/Admin/Sucursales/Agregar'}/>
+                    </OpcionContenedora>
                 </ul>
             </nav>
         </aside>
