@@ -14,7 +14,7 @@ export default function EditProducto({children}) {
             </div>
             <div className="flex">
 
-            <section className="p-3 w-[80%] mx-auto">
+            <section className="p-3 w-[80%] mx-auto ">
                 {
                     productos ? (
                         <ul>
