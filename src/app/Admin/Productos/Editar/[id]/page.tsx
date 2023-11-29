@@ -3,7 +3,6 @@ import {products} from "@/app/components/data/productos.json"
 import {categorias} from "@/app/components/data/categorias.json"
 import React,{ useState } from "react"
 import { FaSave } from "react-icons/fa"
-import Categoria from "@/app/Categorias/[id]/page"
 
 const labelStyle = {
     color: "#fff",
