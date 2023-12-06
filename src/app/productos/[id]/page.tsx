@@ -1,11 +1,22 @@
 import React from "react";
-
 import { products } from '@/app/components/data/productos.json'
-
 import { Colors } from "@/app/extras/styles";
+import { useQuery, gql, ApolloClient, InMemoryCache } from '@apollo/client';
 
 const { tertiary, brand } = Colors;
 
+const Get_PRODUCTS = gql`
+    query Product {
+        product {
+            id
+            nombre
+            imagen
+            tipo
+            precio
+            stock
+        }
+    }
+    `;
 interface ProductProps {
     params: {
         id: number;
@@ -59,30 +70,30 @@ const Products: React.FC<ProductProps> = ({ params }) => {
                 {/* Precio y Stock */}
                 <div className="  w-[100%] items-center flex h-[10%] ">
                     <div className="w-[50%]  text-xl text-white">
-                    <h5 >Stock: {product.stock}</h5>
+                        <h5 >Stock: {product.stock}</h5>
 
                     </div>
                     <div className="w-[50%]">
 
-                    <h4 className="text-2xl md:text-3xl font-bold text-white">Precio: ${product.precio}</h4>
+                        <h4 className="text-2xl md:text-3xl font-bold text-white">Precio: ${product.precio}</h4>
                     </div>
                 </div>
                 {/* Botones */}
                 <div className="  h-[20%] flex">
                     <div className="w-[50%]">
-                    <div className="flex flex-row h-10 w-[50%] md:w-[30%] mx-auto rounded-lg relative bg-transparent mt-1">
-                        <button data-action="decrement" className=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
-                            <span className="m-auto text-2xl font-thin">−</span>
-                        </button>
-                        <input type="number" className="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700 " name="custom-input-number" value="0"></input>
-                        <button data-action="increment" className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer">
-                            <span className="m-auto text-2xl font-thin">+</span>
-                        </button>
-                    </div>
+                        <div className="flex flex-row h-10 w-[50%] md:w-[30%] mx-auto rounded-lg relative bg-transparent mt-1">
+                            <button data-action="decrement" className=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
+                                <span className="m-auto text-2xl font-thin">−</span>
+                            </button>
+                            <input type="number" className="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700 " name="custom-input-number" value="0"></input>
+                            <button data-action="increment" className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer">
+                                <span className="m-auto text-2xl font-thin">+</span>
+                            </button>
+                        </div>
                     </div>
                     <div className="w-[50%]">
-                    <button type="submit" className=" flex w-full items-center justify-center rounded-md border border-transparent bg-orange-200 px-8 py-3 text-base font-medium text-black hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2">Comprar</button>
-        
+                        <button type="submit" className=" flex w-full items-center justify-center rounded-md border border-transparent bg-orange-200 px-8 py-3 text-base font-medium text-black hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2">Comprar</button>
+
 
                     </div>
                 </div>
@@ -92,4 +103,12 @@ const Products: React.FC<ProductProps> = ({ params }) => {
 };
 
 export default Products;
+
+function loadDevMessages() {
+    throw new Error("Function not implemented.");
+}
+
+function loadErrorMessages() {
+    throw new Error("Function not implemented.");
+}
 
