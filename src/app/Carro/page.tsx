@@ -27,16 +27,19 @@ export default function Carro() {
 
     const [productsCart, setProductsCart] = React.useState<Product[]>([]);
   
+    const loadCart = () => {
+        if(localStorage.getItem('cart') != null){
+            const cartItems = JSON.parse(localStorage.getItem('cart') || '{}');
+            cartItems.forEach((product:productCart) => {
+              console.log(product)
+              fetchDataProduct(product.id, product.cant);
+            });
+          }
+    }
 
     useEffect (()=> {
-        if(localStorage.getItem('cart') != null){
-          const cartItems = JSON.parse(localStorage.getItem('cart') || '{}');
-          cartItems.forEach((product:productCart) => {
-            console.log(product)
-            fetchDataProduct(product.id, product.cant);
-          });
-        }
-      },[]);
+        loadCart();
+      },[productsCart]);
         
 
       const fetchDataProduct = async (id: string, cant: number) => {
@@ -97,6 +100,7 @@ export default function Carro() {
                     // Renderizar los productos
                     <ul>
                         {productsCart.map((producto : Product) => (
+                            
                             <li key={producto._id} className='flex p-2 pl-4 rounded-xl gap-x-2 mb-4' style={{backgroundColor: Colors.primary}}>
 
                             <ProductListCard _id={producto._id} name={producto.name} image={producto.image} price={producto.price} description={producto.description}  category={producto.category}/>
