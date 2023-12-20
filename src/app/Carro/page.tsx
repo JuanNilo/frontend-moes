@@ -4,9 +4,10 @@ import { Colors, primaryColor } from '../extras/styles';
 import { products } from "@/app/components/data/productos.json";
 import ProductListCard from '../extras/productos/ProductListCard';
 import { AiTwotoneDelete } from "react-icons/ai";
-
+import { useState } from 'react';
 import client from "@/app/components/client";
 import { gql } from "@apollo/client";
+import WebpayTransbank from '@/app/components/pago/pago';
 const {tertiary} = Colors;
 
 interface Product  {
@@ -24,9 +25,17 @@ interface productCart {
     cant: number;
 }
 export default function Carro() {
-
     const [productsCart, setProductsCart] = React.useState<Product[]>([]);
-  
+    const [returnUrlUser, setReturnUrlUser] = useState("http://127.0.0.1:3000/Carro");
+    const [buyOrderUser, setBuyOrderUser] = useState('ORD-000001');
+    const [urlNueva, setUrlNueva] = useState("");
+    const [tokenNuevo, setTokenNuevo] = useState("");
+    const [sessionIDUser, setSessionIDUser] = useState("session123");
+    const [compraProcesada, setCompraProcesada] = useState(false);
+    const [botonConfirmar, setBotonConfirmar] = useState('Confirmar compra');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [error, setError] = useState(false);
+
     const loadCart = () => {
         if(localStorage.getItem('cart') != null){
             const cartItems = JSON.parse(localStorage.getItem('cart') || '{}');
@@ -37,9 +46,63 @@ export default function Carro() {
           }
     }
 
+    const handleConfirmarCompra = () => {
+        setBotonConfirmar('Cargando...');
+        if(subTotal === 0){
+            setErrorMessage('No hay productos en el carrito');
+            setError(true);
+            setBotonConfirmar('Confirmar compra');
+            return;
+        }
+        setErrorMessage('');
+        setError(false);
+        //aqui quiero agregar un delay de 3 segundos
+        setTimeout(() => {
+            generateOrderNumber();
+            WebpayPlusPage();
+            setCompraProcesada(true);
+            setBotonConfirmar('Confirmar compra');
+        }, 1000);
+    }
+
     useEffect (()=> {
         loadCart();
-      },[productsCart]);
+        generateOrderNumber();
+        WebpayPlusPage();
+        
+      },[]);
+
+      const WebpayPlusPage = async () => {
+        console.log( 'el monto es ', subTotal)
+      try {
+        const result = await client.query({
+          query: gql`
+          query {
+            INIT_TRANSACTION(
+              input: {
+                buyOrder: "${buyOrderUser}",
+          sessionId: "${sessionIDUser}",
+          amount: ${subTotal},
+          returnUrl: "${returnUrlUser}",
+              }
+            ) 
+            {
+              token
+              url
+            }
+          }
+        
+        `
+        });
+    
+        // Maneja el resultado según tus necesidades
+        const { url, token } = result.data.INIT_TRANSACTION;
+        setUrlNueva(url);
+        setTokenNuevo(token);
+      } catch (error) {
+        console.error('el Webpay tiene un errro ',error);
+      }
+    };
         
 
       const fetchDataProduct = async (id: string, cant: number) => {
@@ -83,27 +146,19 @@ export default function Carro() {
         const updatedCart = currentCart.filter((item:productCart) => item.id !== id);
         localStorage.setItem('cart', JSON.stringify(updatedCart));
         setProductsCart([...updatedCart]);
+        window.location.reload();
     }
 
-    
-    const handleSubCant = (id : string) => {
-        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-        let product = cart.find((product:productCart) => product.id === id);
-        if(product.cant === 1) return;
-        product.cant -= 1;
-        localStorage.setItem('cart', JSON.stringify(cart));
-        setProductsCart([...cart]);
-    }
-
-    const handleAddCant = (id : string) => {
-        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-        let product = cart.find((product:productCart) => product.id === id);
-        product.cant += 1;
-        localStorage.setItem('cart', JSON.stringify(cart));
-        setProductsCart([...cart]);
-    }
+   
 
     const subTotal = productsCart.reduce((acc, product) => acc + product.price * product.cant, 0);
+    // Seccion de pago transbank
+    const generateOrderNumber = (): string => {
+        const randomNumber = Math.floor(Math.random() * 1000000) + 1;
+        const orderNumber = `ORD-${randomNumber.toString().padStart(6, '0')}`;
+        
+        return orderNumber;
+    };
 
     return (
         <div className='text-center'>
@@ -127,31 +182,14 @@ export default function Carro() {
                             
                             {/* Input de cantidad del producto */}
                             <div className="flex flex-row h-10 w-24 mx-auto rounded-lg relative bg-transparent mt-1">
-                                <button
-                                    data-action="decrement"
-                                    className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none"
-                                    onClick={() => {
-                                        handleSubCant(producto._id)
-                                    }}
-                                >
-                                    <span className="m-auto text-2xl font-thin">−</span>
-                                </button>
+                                
                                 <input
                                     type="number"
-                                    className="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black md:text-base cursor-default flex items-center text-gray-700"
+                                    className="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black md:text-base cursor-default flex items-center text-gray-700 rounded-lg"
                                     name="custom-input-number"
                                     value={producto.cant}
                                     readOnly
                                 />
-                                <button
-                                    data-action="increment"
-                                    className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer"
-                                    onClick={() => {
-                                        handleAddCant(producto._id)
-                                    }}
-                                >
-                                    <span className="m-auto text-2xl font-thin">+</span>
-                                </button>
                             </div>
                             {/* Boton eliminar */}
                             <button className="bg-red-500 hover:bg-red-900  text-black hover:text-white p-3 h-[45%] my-auto rounded-full"
@@ -193,7 +231,21 @@ export default function Carro() {
                             <span className="font-semibold">Total</span>
                             <span className="font-semibold">$21.98</span>
                         </div>
-                        <button style={{ backgroundColor: Colors.tertiary}} className=" text-black hover:opacity-60 font-bold py-2 px-4 rounded-lg mt-4 w-full">Checkout</button>
+                        { compraProcesada ? 
+                        (
+                            <form method="post" action= {urlNueva}>
+                            <input type="hidden" name="token_ws" value={tokenNuevo} />
+                            <input type="submit" value="Pagar" style={{backgroundColor: Colors.tertiary}} className=" text-black hover:opacity-60 font-bold py-2 px-4 rounded-lg mt-4 w-full" />
+                            </form>) :
+                         (<button onClick={() => handleConfirmarCompra()} style={{ backgroundColor: Colors.tertiary}} className=" text-black hover:opacity-60 font-bold py-2 px-4 rounded-lg mt-4 w-full">{botonConfirmar}</button>)
+                            }
+
+                            {error ? (
+                                <div className="mt-4 bg-red-100 px-4 py-3 rounded-lg relative" role="alert">
+                                    <strong className="font-bold text-red-700 ">Error!</strong>
+                                    <span className="block sm:inline text-black"> {errorMessage}</span>
+                                </div>
+                                    ): null}
                     </div>
             </div>
         </div>
