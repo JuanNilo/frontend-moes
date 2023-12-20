@@ -79,9 +79,28 @@ export default function Carro() {
 
     const deleteProductHandler = (id : string) => {
         let currentCart = JSON.parse(localStorage.getItem('cart') || '[]');
+
         const updatedCart = currentCart.filter((item:productCart) => item.id !== id);
         localStorage.setItem('cart', JSON.stringify(updatedCart));
-        setProductsCart(updatedCart);
+        setProductsCart([...updatedCart]);
+    }
+
+    
+    const handleSubCant = (id : string) => {
+        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        let product = cart.find((product:productCart) => product.id === id);
+        if(product.cant === 1) return;
+        product.cant -= 1;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        setProductsCart([...cart]);
+    }
+
+    const handleAddCant = (id : string) => {
+        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        let product = cart.find((product:productCart) => product.id === id);
+        product.cant += 1;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        setProductsCart([...cart]);
     }
 
     const subTotal = productsCart.reduce((acc, product) => acc + product.price * product.cant, 0);
@@ -106,16 +125,35 @@ export default function Carro() {
                             <ProductListCard _id={producto._id} name={producto.name} image={producto.image} price={producto.price} description={producto.description}  category={producto.category}/>
                             {/* Botones */}
                             
-
+                            {/* Input de cantidad del producto */}
                             <div className="flex flex-row h-10 w-24 mx-auto rounded-lg relative bg-transparent mt-1">
-                                <button data-action="decrement" className=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
+                                <button
+                                    data-action="decrement"
+                                    className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none"
+                                    onClick={() => {
+                                        handleSubCant(producto._id)
+                                    }}
+                                >
                                     <span className="m-auto text-2xl font-thin">−</span>
                                 </button>
-                                <input type="number" className="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700 " name="custom-input-number" value={producto.cant}></input>
-                                <button data-action="increment" className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer">
+                                <input
+                                    type="number"
+                                    className="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black md:text-base cursor-default flex items-center text-gray-700"
+                                    name="custom-input-number"
+                                    value={producto.cant}
+                                    readOnly
+                                />
+                                <button
+                                    data-action="increment"
+                                    className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer"
+                                    onClick={() => {
+                                        handleAddCant(producto._id)
+                                    }}
+                                >
                                     <span className="m-auto text-2xl font-thin">+</span>
                                 </button>
                             </div>
+                            {/* Boton eliminar */}
                             <button className="bg-red-500 hover:bg-red-900  text-black hover:text-white p-3 h-[45%] my-auto rounded-full"
                                 onClick={() => deleteProductHandler(producto._id)}
                             >

@@ -1,49 +1,57 @@
+'use client'
 import { useEffect, useState } from "react";
-import client from "../components/client";
+import client from "@/app/components/client";
 import { gql } from "@apollo/client";
 
 export default function Webpay() {
-  const urlNueva = "";
-  const tokenNuevo = "";
+  const [urlNueva, setUrlNueva] = useState("");
+  const [tokenNuevo, setTokenNuevo] = useState("");
+  const [buyOrderUser, setBuyOrderUser] = useState("123456");
+  const [sessionIDUser, setSessionIDUser] = useState("session123");
+  const [amountUser, setAmountUser] = useState(1000);
+  const [returnUrlUser, setReturnUrlUser] = useState("http://localhost:3000/");
 
-  const WebpayPlusPage = async (urlNueva: string, tokenNuevo: string) => {
-    try {
-      const TransactionData = {
-        buyOrder: '123456',
-        sessionId: 'session123',
-        amount: 1000,
-        returnUrl: 'https://example.com/return',
-      };
+ 
 
-      const result = await client.query({
-        query: gql`
-          query InitTransaction($TransactionData: TransactionDto!) {
-            INIT_TRANSACTION(initTransactionDto: $TransactionData) {
-              url
-              token
-            }
+const WebpayPlusPage = async () => {
+  try {
+    const result = await client.query({
+      query: gql`
+      query {
+        INIT_TRANSACTION(
+          input: {
+            buyOrder: "${buyOrderUser}",
+      sessionId: "${sessionIDUser}",
+      amount: ${amountUser},
+      returnUrl: "${returnUrlUser}",
           }
-        `,
-        variables: {
-          TransactionData,
-        },
-      });
+        ) 
+        {
+          token
+          url
+        }
+      }
+    
+    `
+    });
 
-      // Maneja el resultado según tus necesidades
-      const { url, token } = result.data.INIT_TRANSACTION;
-      urlNueva = url;
-      tokenNuevo = token;
-      console.log('URL:', url);
-      console.log('Token:', token);
-    } catch (e) {
-      console.error(e);
-    }
-  };
+    // Maneja el resultado según tus necesidades
+    const { url, token } = result.data.INIT_TRANSACTION;
+    setUrlNueva(url);
+    setTokenNuevo(token);
+  } catch (error) {
+    console.error(error);
+  }
+};
 
   return (
-    <form method="post" action= "https://webpay3gint.transbank.cl/webpayserver/initTransaction">
-      <input type="hidden" name="token_ws" value="01abaa1284eee646a0e85b5fe6ce61b9e02258c1409fb20d9f436b3c6c071431" />
+    <div>
+      <button onClick={WebpayPlusPage}>Pagar</button>
+    
+    <form method="post" action= {urlNueva}>
+      <input type="hidden" name="token_ws" value={tokenNuevo} />
       <input type="submit" value="Ir a pagar" />
     </form>
+    </div>
   );
 };
