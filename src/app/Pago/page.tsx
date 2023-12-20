@@ -1,31 +1,49 @@
+import { useEffect, useState } from "react";
+import client from "../components/client";
+import { gql } from "@apollo/client";
 
-import { WebpayPlus } from 'transbank-sdk'; // ES6
+export default function Webpay() {
+  const urlNueva = "";
+  const tokenNuevo = "";
 
-export default function Pago(){
-    const WebpayPlus = require('transbank-sdk').WebpayPlus; // ES5
-
-
-async function createTransaction(buyOrder, sessionId, amount, returnUrl) {
+  const WebpayPlusPage = async (urlNueva: string, tokenNuevo: string) => {
     try {
-      const createResponse = await (new WebpayPlus.Transaction()).create(
-        buyOrder, 
-        sessionId, 
-        amount, 
-        returnUrl
-      );
-  
-      
-  
-      return createResponse;
-    } catch (error) {
-      console.error('Error al crear la transacción:', error);
-      throw error;
+      const TransactionData = {
+        buyOrder: '123456',
+        sessionId: 'session123',
+        amount: 1000,
+        returnUrl: 'https://example.com/return',
+      };
+
+      const result = await client.query({
+        query: gql`
+          query InitTransaction($TransactionData: TransactionDto!) {
+            INIT_TRANSACTION(initTransactionDto: $TransactionData) {
+              url
+              token
+            }
+          }
+        `,
+        variables: {
+          TransactionData,
+        },
+      });
+
+      // Maneja el resultado según tus necesidades
+      const { url, token } = result.data.INIT_TRANSACTION;
+      urlNueva = url;
+      tokenNuevo = token;
+      console.log('URL:', url);
+      console.log('Token:', token);
+    } catch (e) {
+      console.error(e);
     }
-  }
-    return(
-    <form action="https://webpay3gint.transbank.cl/webpayserver/initTransaction" method="POST">
-        <input type="hidden" name="token_ws" value="01ab97bd2065ec3543290bdf5ecbba6026948536e017e97f5a6ccfcc5a5d68bc"/>
-        <input type="submit" value="Pagar"/>
+  };
+
+  return (
+    <form method="post" action= "https://webpay3gint.transbank.cl/webpayserver/initTransaction">
+      <input type="hidden" name="token_ws" value="01abaa1284eee646a0e85b5fe6ce61b9e02258c1409fb20d9f436b3c6c071431" />
+      <input type="submit" value="Ir a pagar" />
     </form>
-    )
-}
+  );
+};
