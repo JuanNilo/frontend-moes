@@ -1,11 +1,32 @@
-import React from "react";
+import React, { use, useEffect } from "react";
 
 import { Colors, Styles } from "@/app/extras/styles";
 import Link from "next/link";
+import client from "@/app/components/client";
+import { gql } from "@apollo/client";
 
 const { styleButtomPrimary, styleButtomSecondary } = Styles;
 
 const { primary, secondary, tertiary } = Colors;
+
+client
+    .query({
+        query: gql`
+query{
+  FIND_PRODUCTS{
+    id
+    name
+    description
+    category
+    price
+    image
+  }
+} 
+`,
+    })
+    .then((result) => console.log(result));
+
+
 
 export default function Login() {
     return (

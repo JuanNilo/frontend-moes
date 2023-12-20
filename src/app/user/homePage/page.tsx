@@ -1,5 +1,7 @@
 'use client'
+import client from "@/app/components/client";
 import { Colors, Styles } from "@/app/extras/styles";
+import { gql } from "@apollo/client";
 import React, { useState, useEffect } from "react";
 import { BiEdit } from "react-icons/bi";
 

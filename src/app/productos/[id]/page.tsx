@@ -5,18 +5,7 @@ import { useQuery, gql, ApolloClient, InMemoryCache } from '@apollo/client';
 
 const { tertiary, brand } = Colors;
 
-const Get_PRODUCTS = gql`
-    query Product {
-        product {
-            id
-            nombre
-            imagen
-            tipo
-            precio
-            stock
-        }
-    }
-    `;
+
 interface ProductProps {
     params: {
         id: number;
