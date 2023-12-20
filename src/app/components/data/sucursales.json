@@ -2,43 +2,15 @@
     "sucursales": [
         {
             "id": 1,
-            "nombre": "Santiago"
+            "nombre": "La serena"
           },
           {
             "id": 2,
-            "nombre": "Valparaíso"
+            "nombre": "Santiago"
           },
           {
             "id": 3,
             "nombre": "Concepción"
-          },
-          {
-            "id": 4,
-            "nombre": "Antofagasta"
-          },
-          {
-            "id": 5,
-            "nombre": "Viña del Mar"
-          },
-          {
-            "id": 6,
-            "nombre": "Valdivia"
-          },
-          {
-            "id": 7,
-            "nombre": "Arica"
-          },
-          {
-            "id": 8,
-            "nombre": "Iquique"
-          },
-          {
-            "id": 9,
-            "nombre": "La Serena"
-          },
-          {
-            "id": 10,
-            "nombre": "Puerto Montt"
           }
     ]
   }

@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.7",
+    "graphql": "^16.8.1",
     "next": "14.0.1",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^4.11.0",
-    "transbank-sdk": "^4.0.0"
+    "react-query": "^3.39.3"
   },
   "devDependencies": {
     "@types/node": "^20",

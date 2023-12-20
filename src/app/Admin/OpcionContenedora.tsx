@@ -17,7 +17,7 @@ export default function OpcionContenedora({children, titulo}) {
                 }
                 </div>
             </button>
-            <ul className="mt-2 ml-4">
+            <ul className="mt-2 w-[80%]">
                 {
                     menuDesplegado ? children : null
                 }
