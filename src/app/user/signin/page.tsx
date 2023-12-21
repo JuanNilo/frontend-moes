@@ -52,6 +52,7 @@ function SignIn() {
         `,
       });
       setSignin(result.data.LOGIN);
+      console.log(result.data.LOGIN.data);
       router.push("/user/login");
     } catch (error) {
       console.log(error);
@@ -120,7 +121,7 @@ function SignIn() {
                 className="bg-white dark:bg-gray-800 text-xl text-gray-900 dark:text-gray-400 w-10/12 rounded-md mb-5 mx-2 md:mx-5"
                 type="text"
                 value={name}
-                name="rut"
+                name="name"
                 required
                 onChange={(e) => setName(e.target.value)}
               />
@@ -129,7 +130,7 @@ function SignIn() {
                 className="bg-white dark:bg-gray-800 text-xl text-gray-900 dark:text-gray-400 w-10/12 rounded-md mb-5 mx-2 md:mx-5"
                 type="text"
                 value={city}
-                name="rut"
+                name="city"
                 required
                 onChange={(e) => setCity(e.target.value)}
               />
