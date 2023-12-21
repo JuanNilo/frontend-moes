@@ -1,34 +1,34 @@
 {
-    "categorias": [
-      {
-        "nombre": "Vino",
-        "descripcion": "Una amplia variedad de whisky, desde escocés hasta bourbon.",
-        "imagen": "https://media.discordapp.net/attachments/498604686077722655/1161053486285340844/wine.png?ex=6536e652&is=65247152&hm=9f878bd4beef36cdfc2fdc61e547f3cbc9da866fcb2c2f9d64959e50d1515709&="
-      },
-      {
-        "nombre": "Whisky",
-        "descripcion": "Una amplia variedad de whisky, desde escocés hasta bourbon.",
-        "imagen": "https://media.discordapp.net/attachments/498604686077722655/1161053486029492274/whisky.png?ex=6536e652&is=65247152&hm=7cbce54330a09a73c89b6e079ec70a0d0a3e70cb8c1bf94ba29c2ea401768b58&="
-      },
-      {
-        "nombre": "Vodka",
-        "descripcion": "Vodka de diferentes marcas y sabores.",
-        "imagen": "https://media.discordapp.net/attachments/498604686077722655/1161053485777817740/vodka.png?ex=6536e652&is=65247152&hm=613686531a8f500e8d44609c40c795767ca8208e8982fce733799d682f6d800a&="
-      },
-      {
-        "nombre": "Ron",
-        "descripcion": "Ron blanco, dorado y envejecido.",
-        "imagen": "https://media.discordapp.net/attachments/498604686077722655/1161053486771884193/liquor.png?ex=6536e652&is=65247152&hm=1c8ba4222213a8d19e99a7616a62eedc9581996e259ce5025cca2d147b975f57&="
-      },
-      {
-        "nombre": "Tequila",
-        "descripcion": "Tequila blanco, reposado y añejo.",
-        "imagen": "https://media.discordapp.net/attachments/498604686077722655/1161053486503432353/tequila.png?ex=6536e652&is=65247152&hm=ce26270cf05065fcfaa31d6ce94482c6e5a5bbd304d0413a66d7eea1ea633c7d&="
-      },
-      {
-        "nombre": "Pisco",
-        "descripcion": "Tequila blanco, reposado y añejo.",
-        "imagen": "https://media.discordapp.net/attachments/498604686077722655/1161057859832926218/cola.png?ex=6536ea65&is=65247565&hm=842b8824112f778df807bdbb55fc40cc809b5a3d3093594fc6331e07e67197a7&="
-      }
-    ]
-  }
+  "categorias": [
+    {
+      "nombre": "Vino",
+      "descripcion": "Una amplia variedad de whisky, desde escocés hasta bourbon.",
+      "imagen": "https://media.discordapp.net/attachments/498604686077722655/1161053486285340844/wine.png?ex=6536e652&is=65247152&hm=9f878bd4beef36cdfc2fdc61e547f3cbc9da866fcb2c2f9d64959e50d1515709&="
+    },
+    {
+      "nombre": "Whiskey",
+      "descripcion": "Una amplia variedad de whisky, desde escocés hasta bourbon.",
+      "imagen": "https://media.discordapp.net/attachments/498604686077722655/1161053486029492274/whisky.png?ex=6536e652&is=65247152&hm=7cbce54330a09a73c89b6e079ec70a0d0a3e70cb8c1bf94ba29c2ea401768b58&="
+    },
+    {
+      "nombre": "Vodka",
+      "descripcion": "Vodka de diferentes marcas y sabores.",
+      "imagen": "https://media.discordapp.net/attachments/498604686077722655/1161053485777817740/vodka.png?ex=6536e652&is=65247152&hm=613686531a8f500e8d44609c40c795767ca8208e8982fce733799d682f6d800a&="
+    },
+    {
+      "nombre": "Ron",
+      "descripcion": "Ron blanco, dorado y envejecido.",
+      "imagen": "https://media.discordapp.net/attachments/498604686077722655/1161053486771884193/liquor.png?ex=6536e652&is=65247152&hm=1c8ba4222213a8d19e99a7616a62eedc9581996e259ce5025cca2d147b975f57&="
+    },
+    {
+      "nombre": "Tequila",
+      "descripcion": "Tequila blanco, reposado y añejo.",
+      "imagen": "https://media.discordapp.net/attachments/498604686077722655/1161053486503432353/tequila.png?ex=6536e652&is=65247152&hm=ce26270cf05065fcfaa31d6ce94482c6e5a5bbd304d0413a66d7eea1ea633c7d&="
+    },
+    {
+      "nombre": "Pisco",
+      "descripcion": "Tequila blanco, reposado y añejo.",
+      "imagen": "https://media.discordapp.net/attachments/498604686077722655/1161057859832926218/cola.png?ex=6536ea65&is=65247565&hm=842b8824112f778df807bdbb55fc40cc809b5a3d3093594fc6331e07e67197a7&="
+    }
+  ]
+}
