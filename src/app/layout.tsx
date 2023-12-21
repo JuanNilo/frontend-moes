@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import NavBar from './components/general/NavBar'
+import { SucursalProvider } from './components/context/SucursalContext'
 
 export const metadata: Metadata = {
   title: "MOE's",
@@ -16,11 +17,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <header>
-      <NavBar/>
+        <SucursalProvider>
 
-        </header>
-        {children}
+          <header>
+        <NavBar/>
+
+          </header>
+          {children}
+        </SucursalProvider>
         </body>
     </html>
   )

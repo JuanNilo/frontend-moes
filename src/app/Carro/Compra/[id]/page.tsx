@@ -4,6 +4,7 @@
 import React, { useEffect } from "react";
 import { Colors } from "@/app/extras/styles";
 import { useSearchParams } from "next/navigation";
+import { useSucursalContext } from "@/app/components/context/SucursalContext";
 interface paramsType
 {
     id: string;
@@ -11,6 +12,7 @@ interface paramsType
 
 export default function Compra({params }: {params: paramsType}){
     const {id} = params;
+    const {sucursalSeleccionada} = useSucursalContext();
     const ordenCompra = id; // Orden de compra
     const compraExitosa = true; // Indica si la compra fue exitosa
     const resumenCompra = "Resumen de la compra"; // Resumen de la compra
@@ -28,7 +30,7 @@ export default function Compra({params }: {params: paramsType}){
             {compraExitosa && (
                 <div style={{backgroundColor: Colors.tertiary}} className=" w-[90%] mx-auto h-[80vh] rounded-lg p-10 mt-10 " >
                     <h1 className="text-center text-4xl"> ¡Compra exitosa!{ordenCompra}</h1>
-                    <h2 className="text-center pt-5 text-2xl" >{resumenCompra}</h2>
+                    <h2 className="text-center pt-5 text-2xl" >La sucursal es{sucursalSeleccionada}</h2>
                     <div className="flex pt-10 justify-center gap-x-10 h-[100%]">
                         <div style={{backgroundColor: Colors.primary}} className="w-[40%] h-[80%] text-white rounded-lg ">
                             <h3 className="text-center text-2xl pt-5">Productos comprados</h3>
