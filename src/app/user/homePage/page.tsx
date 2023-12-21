@@ -11,8 +11,28 @@ const homePage = () => {
     const handleEdit = () => {
         console.log('hola')
     }
+    const [name, setName] = useState<string>("");
+    const [email, setEmail] = useState<string>("");
+    const [rut, setRut] = useState<string>("");
+    const [city, setCity] = useState<string>("");
 
+    const loadData = () => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            const decodedToken = atob(token);
+            const payloadData = JSON.parse(decodedToken); // Convertir la carga útil decodificada a un objeto JSON
+            console.log(payloadData); // Imprimir los datos obtenidos del token
+            setName(payloadData.name);
+            setEmail(payloadData.email);
+            setRut(payloadData.rut);
+            setCity(payloadData.city);
+        }
 
+    }
+
+    useEffect(() => {
+        loadData();
+    }, [])
     return (
 
         /* Rectangulo principal del usuario */
@@ -66,10 +86,10 @@ const homePage = () => {
                         </div>
                     ) : (
                         <div>
-                            <a className="bg-white dark:bg-gray-800 text-xl text-gray-900  dark:text-gray-400 m-4 flex items-center justify-center">Camilonga</a>
-                            <a className=" bg-white dark:bg-gray-800 text-xl text-gray-900  dark:text-gray-400 m-4 flex items-center justify-center">Camilonga@longa.cl</a>
-                            <a className=" bg-white dark:bg-gray-800 text-xl text-gray-900  dark:text-gray-400 m-4 flex items-center justify-center">66.666.666-6</a>
-                            <a className=" bg-white dark:bg-gray-800 text-xl text-gray-900  dark:text-gray-400 m-4 flex items-center justify-center">VallenarCity</a>
+                            <a className="bg-white dark:bg-gray-800 text-xl text-gray-900  dark:text-gray-400 m-4 flex items-center justify-center">{name}</a>
+                            <a className=" bg-white dark:bg-gray-800 text-xl text-gray-900  dark:text-gray-400 m-4 flex items-center justify-center">{email}</a>
+                            <a className=" bg-white dark:bg-gray-800 text-xl text-gray-900  dark:text-gray-400 m-4 flex items-center justify-center">{rut}</a>
+                            <a className=" bg-white dark:bg-gray-800 text-xl text-gray-900  dark:text-gray-400 m-4 flex items-center justify-center">{city}</a>
                         </div>
                     )}
                 </div>

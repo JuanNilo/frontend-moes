@@ -5,17 +5,58 @@ import { Colors, Styles } from "@/app/extras/styles";
 
 import Link from "next/link";
 import DatosExtra from "./DatosExtra";
+import { useRouter } from "next/navigation";
+import client from "@/app/components/client";
+import { gql } from "@apollo/client";
 
 const { styleInput, styleLabel, styleButtomPrimary, styleButtomSecondary } = Styles;
 
 const { primary, secondary, tertiary } = Colors;
 
 function SignIn() {
-  const [datosExtra, setDatosExtra] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [rut, setRut] = useState("");
+  const [name, setName] = useState("");
+  const [city, setCity] = useState("");
 
-  const handleRegister = () => {
-    setDatosExtra(!datosExtra);
+  const router = useRouter();
+
+  const initialCount = {
+    success: Boolean,
+    messge: String,
+    data: String,
   }
+  const [signin, setSignin] = useState(initialCount)
+  const fetchSignIn = async () => {
+    event?.preventDefault();
+    console.log(email, password, rut, name, city);
+    try {
+      const result = await client.mutate({
+        mutation: gql`
+        mutation{
+          SIGNUP_USER (
+            input:{
+              name:"${name}",
+              rut:"${rut}",
+              password:"${password}",
+              email:"${email}",
+              city:"${city}",
+            }
+          ){
+            success
+            message
+            data
+          }
+        }
+        `,
+      });
+      setSignin(result.data.LOGIN);
+      router.push("/user/login");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     /* Contenedor principal */
@@ -42,30 +83,25 @@ function SignIn() {
               <h2 style={{ color: tertiary }} className="text-lg md:text-xl mx-3 md:mx-5 mb-1">Correo Electronico *</h2>
               <input
                 className="bg-white dark:bg-gray-800 text-xl text-gray-900 dark:text-gray-400 w-10/12 rounded-md mb-5 mx-2 md:mx-5"
-                type="text"
-                value=""
+                type="email"
+                value={email}
                 name="email"
                 required
+
+                onChange={(e) => setEmail(e.target.value)}
 
               />
               <h2 style={{ color: tertiary }} className="text-lg md:text-xl mx-3 md:mx-5 mb-1">Contraseña *</h2>
               <input
                 className="bg-white dark:bg-gray-800 text-xl text-gray-900 dark:text-gray-400 w-10/12 rounded-md mb-5 mx-2 md:mx-5"
-                type="text"
-                value=""
-                name="email"
+                type="password"
+                value={password}
+                name="password"
                 required
+                onChange={(e) => setPassword(e.target.value)}
 
               />
-              <h2 style={{ color: tertiary }} className="text-lg md:text-xl mx-3 md:mx-5 mb-1">Repetir contraseña *</h2>
-              <input
-                className="bg-white dark:bg-gray-800 text-xl text-gray-900 dark:text-gray-400 w-10/12 rounded-md mb-5 mx-2 md:mx-5"
-                type="text"
-                value=""
-                name="email"
-                required
 
-              />
             </div>
 
             {/* Datos segunda columna */}
@@ -74,35 +110,39 @@ function SignIn() {
               <input
                 className="bg-white dark:bg-gray-800 text-xl text-gray-900 dark:text-gray-400 w-10/12 rounded-md mb-5 mx-2 md:mx-5"
                 type="text"
-                value=""
+                value={rut}
                 name="rut"
                 required
+                onChange={(e) => setRut(e.target.value)}
               />
               <h2 style={{ color: tertiary }} className="text-lg md:text-xl mx-3 md:mx-5 mb-1">Nombre</h2>
               <input
                 className="bg-white dark:bg-gray-800 text-xl text-gray-900 dark:text-gray-400 w-10/12 rounded-md mb-5 mx-2 md:mx-5"
                 type="text"
-                value=""
+                value={name}
                 name="rut"
                 required
+                onChange={(e) => setName(e.target.value)}
               />
               <h2 style={{ color: tertiary }} className="text-lg md:text-xl mx-3 md:mx-5 mb-1">Ciudad</h2>
               <input
                 className="bg-white dark:bg-gray-800 text-xl text-gray-900 dark:text-gray-400 w-10/12 rounded-md mb-5 mx-2 md:mx-5"
                 type="text"
-                value=""
+                value={city}
                 name="rut"
                 required
+                onChange={(e) => setCity(e.target.value)}
               />
             </div>
 
           </div >
           {/* Botones */}
           <button
+            onClick={() => fetchSignIn()}
             type="submit"
             className={`${styleButtomPrimary} text-xl md:text-lgtext-lg flex items-center justify-center my-2 mx-auto w-10/12`}
           >
-            <Link href={'/user/login'}>Registrarse</Link>
+            Registrarse
 
           </button>
 
@@ -110,7 +150,7 @@ function SignIn() {
             type="submit"
             className={`${styleButtomSecondary} text-lg flex items-center justify-center my-2 mx-auto w-10/12`}
           >
-            <Link href={'/'}>Volver</Link>
+            <Link href={'/user/login'}>Volver</Link>
 
           </button>
         </div>

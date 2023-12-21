@@ -1,13 +1,62 @@
-import React from "react";
+'use client'
+import React, { useEffect, useState } from "react";
 
 import { Colors, Styles } from "@/app/extras/styles";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { gql } from "@apollo/client";
+import client from "@/app/components/client";
 
 const { styleButtomPrimary, styleButtomSecondary } = Styles;
 
 const { primary, secondary, tertiary } = Colors;
 
-export default function Login() {
+const Login: React.FC = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const router = useRouter();
+    const initialLogin = {
+        success: '',
+        message: '',
+        data: '',
+    }
+    const [login, setLogin] = useState(initialLogin)
+    const fetchLogin = async () => {
+        event?.preventDefault();
+        try {
+            const result = await client.mutate({
+                mutation: gql`
+                mutation{
+                    LOGIN_USER(
+                        input:{
+                            email:"${email}",
+                            password:"${password}"
+                        }
+                    ){
+                        success 
+                        message
+                        data
+                    }
+                }
+                `,
+            });
+
+            const decodedToken = atob(result.data.LOGIN_USER.data); // Decodificar el token Base64
+            console.log(decodedToken); // Imprimir el token JWT decodificado
+            setLogin({ ...result.data.LOGIN_USER }); // Almacenar el token decodificado
+            router.push("/user/homePage");
+            //Necesito validar el error generado por el backend: success
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    useEffect(() => {
+        if (login.data) {
+            localStorage.setItem("token", login.data);
+        }
+    }, [login.data]);
+
     return (
         /* Contenedor principal */
         <div className="my-16 ">
@@ -27,6 +76,9 @@ export default function Login() {
                         type="email"
                         name="email"
                         required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+
                     />
                     <h2 style={{ color: tertiary }} className="text-2xl md:text-xl mx-5 mb-1">Contraseña</h2>
                     <input
@@ -34,12 +86,15 @@ export default function Login() {
                         type="password"
                         name="password"
                         required
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                     <button
                         type="submit"
                         className={`${styleButtomPrimary} flex text-lg items-center justify-center my-2 mx-auto w-9/12`}
+                        onClick={() => fetchLogin()}
                     >
-                        <Link href={'/user/homePage'}>Iniciar Sesión</Link>
+                        Iniciar Sesión
                     </button>
 
                     <button
@@ -59,6 +114,9 @@ export default function Login() {
                 </div>
             </div>
         </div>
+    );
+};
 
-    )
-}
+/*
+ */
+export default Login;
