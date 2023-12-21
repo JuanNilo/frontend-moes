@@ -25,8 +25,11 @@ interface Product {
     category: string;
     image: string;
 }
+
+
 const Products: React.FC<ProductProps> = ({ params: { id } }) => {
     const router = useRouter();
+    const [stockSucursal, setStockSucursal] = useState(0);
 
     const productoVacio = {
         _id: "",
@@ -34,6 +37,13 @@ const Products: React.FC<ProductProps> = ({ params: { id } }) => {
         description: "",
         price: 0,
         category: "",
+        image: "",
+    };
+    const sucursalVacia = {
+        _id: "",
+        id_store: "",
+        id_product: "",
+        stock: 0,
         image: "",
     };
     const [product, setProduct] = useState<Product>(productoVacio);
@@ -57,17 +67,37 @@ const Products: React.FC<ProductProps> = ({ params: { id } }) => {
             });
 
             setProduct(result.data.FIND_PRODUCT);
+            setStockSucursal(10);
         } catch (error) {
             console.log(error);
         }
     };
-
+    const [sucursal, setSucursal] = useState(sucursalVacia);
+    const FetchSucursal = async () => {
+        try {
+            const result = await client.query({
+                query: gql`
+                query {
+                    FIND_STORE_PRODUCT(_id: "${id}") {
+                        _id
+                        id_store
+                        id_product
+                        stock
+                        image
+                    }
+                }
+                `,
+            });
+            setSucursal(result.data.FIND_SUCURSAL);
+        } catch (error) {
+            console.log(error);
+        }
+    }
     useEffect(() => {
         fetchData();
     }, [id]);
 
     const handleAddCart = () => {
-
         const newItem = {
             id: id,
             cant: cantProducts
@@ -76,7 +106,7 @@ const Products: React.FC<ProductProps> = ({ params: { id } }) => {
 
         // Busca el item en el carrito
         const existingItem = currentCart.find((item: any) => item.id === newItem.id);
-        
+
         if (existingItem) {
             // Si el item ya existe en el carrito, incrementa la cantidad
             existingItem.cant += newItem.cant;
@@ -84,10 +114,10 @@ const Products: React.FC<ProductProps> = ({ params: { id } }) => {
             // Si el item no existe en el carrito, añádelo
             currentCart = [...currentCart, newItem];
         }
-        
+
         // Guarda el carrito actualizado en el localStorage
         localStorage.setItem('cart', JSON.stringify(currentCart));
-        
+
         router.push('/Carro');
 
     }
@@ -99,7 +129,9 @@ const Products: React.FC<ProductProps> = ({ params: { id } }) => {
         }
     }
     const handleAddProduct = () => {
-        setCantProducts(cantProducts + 1);
+        if (cantProducts >= stockSucursal) { return }
+        else
+            setCantProducts(cantProducts + 1);
     }
 
     return (
@@ -134,7 +166,7 @@ const Products: React.FC<ProductProps> = ({ params: { id } }) => {
                 {/* Precio y Stock */}
                 <div className="  w-[100%] items-center flex h-[10%] ">
                     <div className="w-[50%]  text-xl text-white">
-                        <h5 >Stock: aqui deberiamos hacer una fetch</h5>
+                        <h5 >Stock: {stockSucursal}</h5>
 
                     </div>
                     <div className="w-[50%]">
