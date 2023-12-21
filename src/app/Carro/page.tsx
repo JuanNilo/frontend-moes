@@ -7,7 +7,6 @@ import { AiTwotoneDelete } from "react-icons/ai";
 import { useState } from 'react';
 import client from "@/app/components/client";
 import { gql } from "@apollo/client";
-import WebpayTransbank from '@/app/components/pago/pago';
 const {tertiary} = Colors;
 
 interface Product  {
@@ -26,7 +25,6 @@ interface productCart {
 }
 export default function Carro() {
     const [productsCart, setProductsCart] = React.useState<Product[]>([]);
-    const [returnUrlUser, setReturnUrlUser] = useState("http://127.0.0.1:3000/Carro");
     const [buyOrderUser, setBuyOrderUser] = useState('ORD-000001');
     const [urlNueva, setUrlNueva] = useState("");
     const [tokenNuevo, setTokenNuevo] = useState("");
@@ -58,8 +56,10 @@ export default function Carro() {
         setError(false);
         //aqui quiero agregar un delay de 3 segundos
         setTimeout(() => {
-            generateOrderNumber();
-            WebpayPlusPage();
+            const ordetNumber = generateOrderNumber();
+            console.log(ordetNumber);
+            const returnUrl = `http://localhost:3000/Carro/Compra/${ordetNumber}/`;
+            WebpayPlusPage(returnUrl);
             setCompraProcesada(true);
             setBotonConfirmar('Confirmar compra');
         }, 1000);
@@ -68,11 +68,10 @@ export default function Carro() {
     useEffect (()=> {
         loadCart();
         generateOrderNumber();
-        WebpayPlusPage();
         
       },[]);
 
-      const WebpayPlusPage = async () => {
+      const WebpayPlusPage = async (returnUrl: string) => {
         console.log( 'el monto es ', subTotal)
       try {
         const result = await client.query({
@@ -83,7 +82,7 @@ export default function Carro() {
                 buyOrder: "${buyOrderUser}",
           sessionId: "${sessionIDUser}",
           amount: ${subTotal},
-          returnUrl: "${returnUrlUser}",
+          returnUrl: "${returnUrl}",
               }
             ) 
             {
@@ -149,8 +148,6 @@ export default function Carro() {
         window.location.reload();
     }
 
-   
-
     const subTotal = productsCart.reduce((acc, product) => acc + product.price * product.cant, 0);
     // Seccion de pago transbank
     const generateOrderNumber = (): string => {
@@ -207,7 +204,7 @@ export default function Carro() {
                 )}
             </div>
             {/* Resumen de la compra */}
-            <div className=" h-[80vh] w-[90%] md:w-[30%] mx-auto text-center p-2 md:p-8 rounded-xl shadow-xl abosolute top-0 right-0"
+            <div className=" h-[50vh] w-[90%] md:w-[30%] mx-auto text-center p-2 md:p-8 rounded-xl shadow-xl abosolute top-0 right-0"
                 style={{backgroundColor: tertiary}}
                 >
                 
@@ -216,21 +213,10 @@ export default function Carro() {
                     className='text-4xl pb-6 font-bold'
                 >Resumen de la compra</h1>
                         <div className="flex justify-between mb-2">
-                            <span>Subtotal</span>
-                            <span>{subTotal}</span>
+                            <span>Total</span>
+                            <span>${subTotal}</span>
                         </div>
-                        <div className="flex justify-between mb-2">
-                            <span>Taxes</span>
-                            <span>$1.99</span>
-                        </div>
-                        <div className="flex justify-between mb-2">
-                            <span>Shipping</span>
-                            <span>$0.00</span>
-                        </div>
-                        <div className="flex justify-between mb-2">
-                            <span className="font-semibold">Total</span>
-                            <span className="font-semibold">$21.98</span>
-                        </div>
+                        
                         { compraProcesada ? 
                         (
                             <form method="post" action= {urlNueva}>
