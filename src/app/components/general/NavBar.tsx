@@ -43,22 +43,10 @@ export default function NavBar() {
             <div className="w-[100%] md:w-[70%] flex">
                 <Logo />
                 <SelectoSucursal />
-                <SearchBar />
             </div>
             {/* Parte izquierda */}
             <div className="w-[15%] md:w-[50%] flex-wrap md:flex items-center md:justify-end ">
                 <Carrito />
-                {/* Pago */}
-                <Link
-                    href={'/Pago/'}
-                >
-                    <div
-                        style={{ backgroundColor: tertiary }}
-                        className="h-[50px] w-[50px] rounded-full mt-2 flex cursor-pointer mx-2"
-                    >
-                        <CiBadgeDollar size={40} className=" text-black m-auto" />
-                    </div>
-                </Link>
                 {/* Menu Admin */}
                 <Link
                     href={'/Admin'}
