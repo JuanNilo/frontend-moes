@@ -45,7 +45,7 @@ const Login: React.FC = () => {
             const decodedToken = atob(result.data.LOGIN_USER.data); // Decodificar el token Base64
             console.log(decodedToken); // Imprimir el token JWT decodificado
             setLogin({ ...result.data.LOGIN_USER }); // Almacenar el token decodificado
-            router.push("/user/homePage");
+            router.push("/");
             //Necesito validar el error generado por el backend: success
         } catch (error) {
             console.log(error);
