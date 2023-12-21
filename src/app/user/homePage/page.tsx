@@ -60,47 +60,47 @@ export default function homePage() {
             setEmail(payloadData.email);
             setRut(payloadData.rut);
             setCity(payloadData.city);
-            setId(payloadData.id);
+            setId(payloadData.ID);
+            obtenerRegistros(payloadData.ID);
         }
     }
     const logout = () => {
-        console.log('hola')
+        console.log('cerro sesion')
         localStorage.removeItem("token");
         window.location.href = "/";
         router.push("/");
     }
 
+    const obtenerRegistros = async (id: string) => {
+        console.log(id);
+        try {
+            const result = await client.query({
+                query: gql`
+        query {
+            FIND_ALL_REGISTER(id_user: "${id}") {
+            _id
+                  buy_order
+        id_user
+        email_user
+        date
+        amount
+        id_products
+        name_products
+        quantity_products
+        amount_products
+                }
+              }
+        `,
+            });
+            setRegister(result.data.FIND_ALL_REGISTER);
+            console.log(result.data.FIND_ALL_REGISTER);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
-
-    // Llamada a la función obtenerRegistros con el id correspondiente
     useEffect(() => {
         loadData();
-        const obtenerRegistros = async (id: string) => {
-            try {
-                const result = await client.query({
-                    query: gql`
-                  query {
-                    FIND_ALL_REGISTER (id_user: "${id}") {
-                      _id
-                      buy_order
-                      id_user
-                      email_user
-                      date
-                      amount
-                      id_products
-                      name_products
-                      quantity_products
-                      amount_products
-                    }
-                  }
-                `,
-                });
-                setRegister(result.data.FIND_ALL_REGISTER);
-                console.log(result.data.FIND_ALL_REGISTER);
-            } catch (error) {
-                console.log(error);
-            }
-        };
     }, [])
     return (
         <div className="flex flex-col justify-content items-center">
@@ -223,17 +223,17 @@ export default function homePage() {
             {display ? (
                 <div style={{ backgroundColor: tertiary }}
                     className="my-10 mx-20 w-[1200px] h-[400px] rounded-md flex-col relative">
-                    {register.map((registro: Registro) => (
-                        <div key={registro._id}>
+                    {register.map((registro: Registro, index = 0) => (
+                        <div key={index}>
                             <button className="absolute top-0 right-0 m-1 p-2" onClick={() => setDisplay(false)}>
                                 <FaArrowCircleUp size={40} className=" text-black m-auto" />
                             </button>
                             <div></div>
                             {registro.name_products.map((name: string, index: number) => (
-                                <a className="bg-white dark:bg-gray-800 text-2xl text-gray-900 dark:text-gray-400 m-4 flex items-allow justify-space-evenly" key={index}>
-                                    <span >Producto: {registro.name_products[index]}}</span>
-                                    <span>Cantidad: {registro.quantity_products[index]}</span>
-                                    <span>Precio: ${registro.amount_products[index]}</span>
+                                <a className="bg-white dark:bg-gray-800 text-2xl text-gray-900 dark:text-gray-400 m-12 flex alls-item-center justify-between" key={index}>
+                                    <a>Producto: {registro.name_products[index]}</a>
+                                    <a>Cantidad: {registro.quantity_products[index]}</a>
+                                    <a>Precio:  ${registro.amount_products[index]}</a>
                                 </a>
                             ))}
 
