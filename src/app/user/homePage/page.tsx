@@ -1,5 +1,6 @@
 'use client'
 import { Colors, Styles } from "@/app/extras/styles";
+import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { BiEdit } from "react-icons/bi";
 
@@ -7,6 +8,7 @@ const { primary, secondary, tertiary } = Colors;
 
 
 const homePage = () => {
+    const router = useRouter();
     const [editMode, setEditMode] = useState<boolean>(false);
     const handleEdit = () => {
         console.log('hola')
@@ -27,9 +29,13 @@ const homePage = () => {
             setRut(payloadData.rut);
             setCity(payloadData.city);
         }
-
     }
-
+    const logout = () => {
+        console.log('hola')
+        localStorage.removeItem("token");
+        window.location.href = "/";
+        router.push("/");
+    }
     useEffect(() => {
         loadData();
     }, [])
@@ -85,11 +91,19 @@ const homePage = () => {
                             <button className='text-sm w-[100%] text-white transition duration-150 hover:bg-[#b6efb0] bg-[#93c47d]  font-bold py-2 px-6 rounded '>Modificar Datos</button>
                         </div>
                     ) : (
-                        <div>
+                        <div >
                             <a className="bg-white dark:bg-gray-800 text-xl text-gray-900  dark:text-gray-400 m-4 flex items-center justify-center">{name}</a>
                             <a className=" bg-white dark:bg-gray-800 text-xl text-gray-900  dark:text-gray-400 m-4 flex items-center justify-center">{email}</a>
                             <a className=" bg-white dark:bg-gray-800 text-xl text-gray-900  dark:text-gray-400 m-4 flex items-center justify-center">{rut}</a>
                             <a className=" bg-white dark:bg-gray-800 text-xl text-gray-900  dark:text-gray-400 m-4 flex items-center justify-center">{city}</a>
+                            <div className="flex flex-col items-center justify-center">
+                                <button
+                                    className="text-sm w-[90%] text-white transition duration-150 hover:bg-red-100 bg-red-600 font-bold py-2 px-6 rounded flex items-center justify-center"
+                                    onClick={() => { logout() }}
+                                >Cerrar Sesión
+                                </button>
+                            </div>
+
                         </div>
                     )}
                 </div>
